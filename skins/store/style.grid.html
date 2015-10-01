@@ -1,8 +1,7 @@
 <ul class="item-list">
 	<block loop="$output->data=>$no,$document">
 	{@$item = $document->item}
-        <li cond="$item" id="item_{$item->item_srl}" style="width:190px;">
-		<block cond="$item->display == 'Y'">
+        <li cond="$item && $item->display == 'Y'" id="item_{$item->item_srl}" style="width:190px;">
                 <a class="thumbnail" href="{getUrl('','mid',$item->mid,'item_srl',$item->item_srl)}">
                     <img src="{$item->getThumbnail(80)}" alt="" />
                 </a>
@@ -16,14 +15,6 @@
                         </span>
                 </div>
                 <div class="item_price"><strong>{number_format($item->price)}</strong></div>
-		</block>
-		<block cond="$item->display == 'N'">
-                <a class="thumbnail">
-                    <img src="{$item->getThumbnail(80)}" alt="" />
-                </a>
-                <div class="item_name">미진열상품</div>
-                <div class="item_price"><strong></strong><span class="won"></span></div>
-		</block>
         </li>
 	</block>
 </ul>
